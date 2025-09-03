@@ -1,0 +1,103 @@
+
+
+***************  Core Branch Type **************************
+1> master       |  Production-ready code (deployed to live environment) | Permanent 
+2> develop      |  Integration branch for ongoing development (next release) | Permanent 
+3> feature/*    |  Derived from the develop branch | Temporary
+4> bugfix/*     |  Derived from the develop branch | Temporary
+5> hotfix/*     |  Derived from the master branch | Temporary
+6> release/*    |  Prepares for a new production release (final testing /polishing) | Temporary 
+
+
+*************** Step-by-Step Workflow **********************
+
+1> Base Branches (Permanent)
+    -- master: Always reflects code running in production
+	       Protected: No direct pushes: Only merged via pull requests from hotfix/* 
+		          or release/* branches
+    -- develop:Integration branch for all ongoing work.
+	       Protected: No direct pushes. Updated via PRs from feature/* or bugfix/*
+			  branches
+ 
+2> Feature Development 
+   -- Start from the latest develop branch
+      git checkout develop
+      git pull origin develop
+   -- Create a feature branch (use descriptive names)
+      git checkout -b feature/product-search 
+      git checkout -b feature/user-login
+
+3> Bug Fixes (Non-critical)
+    -- For issues found in develop branch (cart count not updating)
+	git checkout develop
+	git pull origin develop
+    -- Create a bugfix branch
+	git checkout -b bugfix/cart-count-update
+    -- Fix the bug then PR to develop
+
+4> Urgent Production Fixes
+    -- For critical issues in master (checkout button not working)
+    -- Start directly from master
+    git checkout master
+    git pull origin master
+ 
+    -- Create a hotfix branch
+    git checkout -b hotfix/checkout-button
+
+    -- Fix the bug ,test, then: PR to master ,Also PR to develop
+	(to prevent the bug from reappearing in future release)		
+5> Preparing for release
+     git checkout develop
+     git pull origin develop
+     -- Create a release branch (name with version, e.g, v1.0.0)
+     git checkout -b release/v1.0.0
+
+
+
+*********************      Core Relations between branchs *****************
+
+1> master --> develop
+   . develop is created from master  and evolves independentlya
+   . Emergency fixes for production flow from master to develop (via hotfix/* branches) to avoid regressions
+
+2> master <--> hotfix (Temporary branches)
+   . hotfix branch is created from master (since the bug existes in production)
+   . After fixing, hotfix/* is merged back to the master branch and to develop
+	(to prevent the bug from reapearing in future releases)
+   .sum. master -> hotfix / hotfix --> master --> develop
+
+3> develop <-- --> feature/*  &&  develop <-- --> bugfix/*
+   .both feature/* and bugfix/* are all created from develop branch
+   .Once completed , they are merged back to develop branch (via PRS) for integration and testing
+
+
+4> develop <-- --> release/*
+   .release/*: Prepares for a production launch (releasse/v1.0.0)
+
+   .release/* is created from the develop branch when enough freatuers are ready for release
+   . After final testing , release is merged to main (to deploy to production) and back to develop
+
+
+
+// Summarize
+
+master -> develop
+master -> hotfix/*
+hotfix/*  --> master (via PR)
+master -> develop
+
+
+master -> develop
+develop -> feature/*
+develop -> bugfix/* 
+feature/* -> develop (via PR)
+bugfix/* -> develop (via PR)
+
+
+develop --> release/v1.0.0
+release --> master
+master --> develop
+
+
+
+

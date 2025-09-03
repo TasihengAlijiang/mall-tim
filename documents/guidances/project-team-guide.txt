@@ -1,0 +1,104 @@
+
+1. Project initialization &   Tech Stack
+  1.1 Core dependencies
+	. Framework: React 19+ (functional components , hooks)
+	. Build Tool: Vite(faster development) or Create React App(simple setup)
+	. Language: TypeScript (preferred for type safety) or JavaScript(with JSDoc)
+	. Routing: React Router v6
+	. Sate Management
+		. Local state: useState, useReducer
+		. Global state: Redux toolkit(comlex apps) or Context API + useReducer(simple apps)
+	. UI Library: Ant Design, Material UI, or Tailwind CSS(with a shared design system)
+	. HTTP Client: Axios (with request/reponse interceptors)
+	. Code Quality: ESLint + Prettier
+	. Testing: Jest + React Testing Library
+	
+  1.2 Project Setup Checklist
+	1. initialize the project
+	2. Configure ESlint  & Prettier
+	3. Set up Git workflow:
+	4. Create base folder structure
+
+2. Coding Standards
+  2.1 Component Design
+	. Use functional components with Hooks (avoid class components)
+	. Split components by responsibility
+		. Container components (handle logic , data fetching)
+		. Presentation components (UI only, receive props)
+	. Component naming: PascalCase (ProductDetail.jsx) with filenames matching component names
+	. Props: Use Typescript interfaces or PropTypes for validation
+
+  2.2 State Management
+        . Local state: Use useState for component-specific state (form inputs)
+	. Global state: Centralize with Redux Toolkit for shared state(user ,cart, app settings)
+	. 
+
+  2.3 Styling
+	. Consistent approach: Use CSS-in-JS (styled-componets), CSS Modues , or Tailwind.
+	. Naming conventions: BEM (Block_Element--Modifier) for clas names if using plain CSS.
+	. Responsiveness: Use media queries or UI library responsive uitilites
+	. Avoid global styles
+
+  2.4 Routing
+	 .Define routes in a centrailized src/routes.jsx file
+	 .Use React.lazy + Suspense for code splitting
+
+
+3. Workflow  &  Collaboration
+  3.1 Git Workflow
+	 1. Create a feature branch from develop
+	 2. Commit frequently
+	  	add commit -m "feat: add user login form"
+		add commit -m "fix: resolve cart quality calculation bug"
+		add commit -m "docs: update API documentation"
+	 3. Push branch to remote and create a Pull Request (PR) to develop
+		Link PR to a task/ticket
+	 4. Merge after aproval 
+  3.2 Code reviews
+	1. Review checklist
+		 . Code follows project standards (naming, structure)
+		 . Type safty/prop validation is implemented.
+		 . Tests cover critical functionality.
+		 . No unneccessary dependencies or dead code.
+	2. Provide constructive feedback: Focus on code, not the developer
+
+  3.3 Testing
+	1.Unit tests: Test individual components/hooks (ProductCard.test.tsx).
+	2.Integration tests: Test component interactions (adding to cart).
+	3. E2E tests (optional ): Use Cypress for critical flows (checkout ,login).
+	4.Coverage target: Aim for >= 70% code coverage
+
+
+
+4. Performance & OPtimization
+   1. Avoid unnecessary re-renders: Use React.memo, useMemo, useCallback.
+   2. Optimise lists: Use react-window or react-virtualized for long lists 
+   3. Image optimization: Use next/image (if using Next.js) or loading="lazy" for lazy loading.
+   4. Bundle size: Monitor with npm run build -- -- report(Vite) or source-map-explore
+   5. API efficiency: Implement caching (React Query) and debounce search inputs
+
+
+
+5. Deployment & CI/CD
+   staging: Deploy develop branch to a staging environment (Vercel , Preview, Netlify Deploy Preview)
+   Production: Deploy master branch to Production 
+   CI/CD pipeline (Github Actions example)
+
+
+
+6. Documentation
+   1. Project README: Setup instructions , tech stack, and architecture overview.
+   2. Component docs: Use Storybook to document UI components and their props.
+   3. API docs: Document backend endpoints in src/services/api-docs.md.
+   4. Onboarding guide: Help new members set up the project locally.
+
+
+7. Conflict Resolution
+   1.Pull latest changes from the base branch before submiiting a PR;
+      git checkout feature/my-feature
+      git merge develop
+      then resolve conflicts locally, then push
+
+
+   
+	

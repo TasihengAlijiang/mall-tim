@@ -1,0 +1,103 @@
+
+Phase 1: Project initialization & Core Setup 
+	1> Get the React project running locally with essential tools , connected to your repos
+	2> Initialize the React Project
+	    1. Use Vite (faster than Create React App) for modern tooling
+	    		npm create vite@latest mall-tim -- --template react
+			cd mall-tim
+			npm install
+     		  	npm run dev
+	    
+	    2. Connect to Your Git Repos
+		Link your local project to your existing Git setup
+		   git init
+		   git remote add origin git@gitee.com:tasiheng/mall-tim.git
+		   git remote add github git@github.com:TasihengAlijiang/mall-tim.git
+		   git checkout -b develop
+		   git push -u orgin develop
+		   git push -u github develop
+		   git checkout master
+		   git push -u orgin master
+		   git push -u github master
+	    3. Install Eesstial Dependencies
+		  npm install react-router-dom
+		  npm install @reduxjs/toolkit react-redux
+		  npm install antd
+		  npm install axios
+		  npm install react-hook-form
+	 
+
+Phase 2: Project Structure  & Basic UI
+	Goal: Organize files locally and build the main layout
+	1> Design the folder structure
+	2> Build the Main Layout
+	   Create src/components/common/Header.jsx (navigation,search,cart icon).
+	   Create src/components/common/Footer.jsx (links, copyright)
+
+		
+
+Phase 3: Core Features Development 
+	  Build features incrementally , focusing on one flow at a time
+		 MileStone 1: Product Listing & Details
+			.Mock data: Create src/services/mockProducts.js with sample products(id,name,price,images,etc).
+			.ProductList page: Fetch mock data , display products in a grid using ProductCard components
+			.Filter/sort: Add buttons to filter by category and sort by price
+			.ProductDetail page: Show full product info, images, and an "Add to Cart" button.
+		 MileStone 2: Shopping Cart
+		         .Redux setup
+			 .Cart page
+			 .Cart icon in Header
+	         MileStone 3: Checkout Flow
+			 .Create a simple checkout page with
+
+Phase 4: Polish & Optimization
+	1> Responsive Design : Use Ant Design's responsive tools or CSS medai queries to fit mobile/desktop
+	2> Loading states: Add spinners for data fetching (use useEffect + state);
+	3> Error handling: Show alerts if API calls fail ( mock this with setTimeout);
+	4> Performance:
+		Use React.memo for expensive components (ProductCard).
+		Implement image lazy loading with loading="lazy"
+
+Phase 5: Testing & Depolyment 
+	 1> Test Features
+		.Manually test core flows
+		  Browse products -> Add to cart -> Update quantities -> Checkout
+	        .Fix bugs
+	 2> Push to Remotes
+		git add .
+	   	git commit -m "Complete checkout flow and optimizations"
+		git push origin develop
+		git push github develop
+		
+ 		git checkout master
+		git merge develop
+		git push orgin master
+		git push github master
+		
+	 3> Deploy
+		1. Deploy to a free platform
+			. Vercel: Connect your Github repo for auto-deployment
+			. Netlify: Drag-and-drop the dist folder (run npm run build first)
+		2.Share the live link in your repo's README.
+
+
+Phase 6: Documentation &  Next Steps
+	Wiret a README.md with:
+		.Project overview(features , tech stack)
+		.Screenshoots/GIFs of the mall
+		.Setup instructions (npm install, npm run dev)
+	Future improvements (for learning)
+		.User authentication (Firebase or JWT)
+		.Payment integration (Stripe test mode)
+		.Product reviews system
+
+
+
+Key Tips:
+	1. Commit frequently with clear messages ("Add cart remove functionality)
+	2. Use feature brnaches for new work (feature/checkout-form) , then merge to develop
+	3. Refer to React/Redux docs and Ant Design example when stuck
+
+
+
+
